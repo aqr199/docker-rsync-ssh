@@ -1,0 +1,32 @@
+services:
+  rsync:
+    #image: aqr199/rsync:alpine
+    build: .
+    container_name: rsync_flexible
+    networks:
+      network_pd:
+        ipv4_address: 192.168.50.126
+#    ports:
+#      - "2202:22"
+    environment:
+      # 權限設定 (對齊宿主機 UID/GID)
+      - PUID=1000
+      - PGID=1000
+      # 模式 2 & 3: SSH 帳密與密鑰
+      - SSH_USER=admin
+      - SSH_PASSWORD=12345678
+      # ssh-keygen -t ed25519 -C "su.charlie@gmail.com"
+      #- SSH_PUBLIC_KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFN8iM9lbMnam5bKXCZqks+zEEzsDyb+V1Ti4rsbkB2q su.charlie@gmail.com
+      # 安全設定
+      #- USE_RRSYNC=false       # 開啟後禁止 SSH 登入，僅限同步功能
+      - ALLOW_IP=192.168.50.0/24,192.168.8.0/24
+    volumes:
+      - ssh_host_keys:/ssh_keys
+      - ssh_data:/data
+    restart: always
+networks:
+  network_pd:
+    external: true
+volumes:
+  ssh_host_keys:
+  ssh_data:
