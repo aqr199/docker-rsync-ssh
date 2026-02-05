@@ -91,13 +91,15 @@ rsync --list-only admin@192.168.0.1:/
 rsync --list-only -e "ssh -p 2223" admin@192.168.0.1:/
 ```
 
-# rrsync [使用說明][0]
+# rrsync 
+
+[使用說明][0]
 
 [0]: https://github.com/RsyncProject/rsync/blob/master/support/rrsync.1.md
 
 
 2021年12月28日 改成 python 版本
-<https://github.com/RsyncProject/rsync/commits/master/support/rrsyn>
+<https://raw.githubusercontent.com/RsyncProject/rsync/refs/heads/master/support/rrsync>
 
 2021年12月20日 以前是 perl 版本
 <https://raw.githubusercontent.com/RsyncProject/rsync/ed19ea05fea83fe7c757a40060ecc54e0fd82f3a/support/rrsync>
